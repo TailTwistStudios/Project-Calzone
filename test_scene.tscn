@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://dolg415b2ypyq"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yitre"]
+
+[sub_resource type="Sky" id="Sky_d1dbi"]
+sky_material = SubResource("ProceduralSkyMaterial_yitre")
+
+[sub_resource type="Environment" id="Environment_3pmyx"]
+background_mode = 2
+sky = SubResource("Sky_d1dbi")
+
+[node name="TestScene" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_3pmyx")
