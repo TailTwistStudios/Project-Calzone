@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://ceirl4fa0nkld"]
 
-[ext_resource type="Script" path="res://player.gd" id="1_cptfx"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_pbpj4"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_aqunt"]
 
@@ -18,7 +18,7 @@ properties/1/watch = false
 
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 2
-script = ExtResource("1_cptfx")
+script = ExtResource("1_pbpj4")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

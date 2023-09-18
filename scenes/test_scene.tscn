@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://dolg415b2ypyq"]
 
-[ext_resource type="Material" uid="uid://bopblcmuh0g35" path="res://DebugGrid.tres" id="1_1bno0"]
-[ext_resource type="Script" path="res://MultiplayerController.gd" id="1_v7164"]
+[ext_resource type="Script" path="res://scripts/MultiplayerController.gd" id="1_p3tc8"]
+[ext_resource type="Material" uid="uid://bopblcmuh0g35" path="res://DebugGrid.tres" id="2_hc4lb"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yitre"]
 
@@ -18,7 +18,7 @@ size = Vector3(10, 1, 10)
 [sub_resource type="BoxMesh" id="BoxMesh_on6j6"]
 
 [node name="TestScene" type="Node3D"]
-script = ExtResource("1_v7164")
+script = ExtResource("1_p3tc8")
 
 [node name="Node3D" type="Node3D" parent="."]
 
@@ -37,7 +37,7 @@ shape = SubResource("BoxShape3D_cgvu1")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
 transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, 0, 0, 0)
-material_override = ExtResource("1_1bno0")
+material_override = ExtResource("2_hc4lb")
 mesh = SubResource("BoxMesh_on6j6")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -88,7 +88,7 @@ caret_blink = true
 caret_blink_interval = 0.5
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://player.tscn")
+_spawnable_scenes = PackedStringArray("res://scenes/player.tscn")
 spawn_path = NodePath("..")
 
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
