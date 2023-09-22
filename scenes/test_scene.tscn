@@ -22,10 +22,6 @@ script = ExtResource("1_p3tc8")
 
 [node name="Node3D" type="Node3D" parent="."]
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.924759, 0.380554, 0, -0.380554, 0.924759, 0, 2.74853, 7.79173)
-current = true
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_3pmyx")
 

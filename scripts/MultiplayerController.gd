@@ -20,9 +20,12 @@ func _on_host_button_pressed():
 
 	add_player(multiplayer.get_unique_id())
 
+
 func _on_join_button_pressed():
 	main_menu.hide()
-	enet_peer.create_client("localhost", PORT)
+	
+	if address_entry.text == "": address_entry.text = "localhost"
+	enet_peer.create_client(address_entry.text, PORT)
 	multiplayer.multiplayer_peer = enet_peer
 
 
