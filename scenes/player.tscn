@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://ceirl4fa0nkld"]
+[gd_scene load_steps=6 format=3 uid="uid://ceirl4fa0nkld"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_pbpj4"]
+[ext_resource type="Script" path="res://scripts/WorldMapRequester.gd" id="2_0gm0l"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_aqunt"]
 
@@ -69,7 +70,8 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="HTTPRequest" type="HTTPRequest" parent="MenuCanvas/PanelContainer/MarginContainer/VBoxContainer/PanelContainer"]
-download_file = "http://localhost:3000/worldmap"
+script = ExtResource("2_0gm0l")
 
 [node name="Label" type="Label" parent="MenuCanvas/PanelContainer/MarginContainer/VBoxContainer/PanelContainer"]
 layout_mode = 2
+autowrap_mode = 2

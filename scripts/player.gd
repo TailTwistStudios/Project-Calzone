@@ -9,20 +9,11 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var camera : Camera3D = $Camera3D
 @onready var menu : CanvasLayer = $MenuCanvas
 
-@onready var webRequest : HTTPRequest = $MenuCanvas/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/HTTPRequest
-@onready var resultsLabel : Label = $MenuCanvas/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/Label
 
 func _ready():
 	if is_multiplayer_authority():
 		camera.current = true
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-		webRequest.request_completed.connect(_on_request_completed)
-		webRequest.request("https://api.github.com/repos/godotengine/godot/releases/latest")
-
-
-func _on_request_completed(_result, _response_code, _headers, body):
-	var json = JSON.parse_string(body.get_string_from_utf8())
-	print(json["name"])
 	
 
 func _enter_tree():
