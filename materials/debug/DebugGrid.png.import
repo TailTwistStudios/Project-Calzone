@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://k3f8jx4s8yyp"
-path.s3tc="res://.godot/imported/DebugGrid.png-c04e1030ee1f030d72f46a1a0967c022.s3tc.ctex"
+path.s3tc="res://.godot/imported/DebugGrid.png-3e03883da5eb546e520bac8a077ac6a7.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://DebugGrid.png"
-dest_files=["res://.godot/imported/DebugGrid.png-c04e1030ee1f030d72f46a1a0967c022.s3tc.ctex"]
+source_file="res://materials/debug/DebugGrid.png"
+dest_files=["res://.godot/imported/DebugGrid.png-3e03883da5eb546e520bac8a077ac6a7.s3tc.ctex"]
 
 [params]
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://dolg415b2ypyq"]
 
 [ext_resource type="Script" path="res://scripts/MultiplayerController.gd" id="1_p3tc8"]
-[ext_resource type="Material" uid="uid://bopblcmuh0g35" path="res://DebugGrid.tres" id="2_hc4lb"]
+[ext_resource type="Material" uid="uid://bopblcmuh0g35" path="res://materials/debug/DebugGridGray.tres" id="2_lktph"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yitre"]
 
@@ -33,7 +33,7 @@ shape = SubResource("BoxShape3D_cgvu1")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
 transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, 0, 0, 0)
-material_override = ExtResource("2_hc4lb")
+material_override = ExtResource("2_lktph")
 mesh = SubResource("BoxMesh_on6j6")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -76,7 +76,24 @@ text = "Host"
 layout_mode = 2
 text = "Join"
 
+[node name="Label2" type="Label" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Server Address"
+horizontal_alignment = 1
+
 [node name="Address Entry" type="LineEdit" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Enter IP Address"
+alignment = 1
+caret_blink = true
+caret_blink_interval = 0.5
+
+[node name="Label3" type="Label" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Instance Address"
+horizontal_alignment = 1
+
+[node name="Address Entry2" type="LineEdit" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
 placeholder_text = "Enter IP Address"
 alignment = 1

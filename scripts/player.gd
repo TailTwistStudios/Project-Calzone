@@ -7,12 +7,22 @@ const JUMP_VELOCITY = 4.5
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var camera : Camera3D = $Camera3D
+@onready var menu : CanvasLayer = $MenuCanvas
+
+@onready var webRequest : HTTPRequest = $MenuCanvas/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/HTTPRequest
+@onready var resultsLabel : Label = $MenuCanvas/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/Label
 
 func _ready():
-	if not is_multiplayer_authority():
-		camera.visible = false
-	else:
+	if is_multiplayer_authority():
+		camera.current = true
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		webRequest.request_completed.connect(_on_request_completed)
+		webRequest.request("https://api.github.com/repos/godotengine/godot/releases/latest")
+
+
+func _on_request_completed(_result, _response_code, _headers, body):
+	var json = JSON.parse_string(body.get_string_from_utf8())
+	print(json["name"])
 	
 
 func _enter_tree():
@@ -20,16 +30,29 @@ func _enter_tree():
 
 
 func _unhandled_input(event):
+	if not is_multiplayer_authority(): return
+	if menu.visible: return
 	if event is InputEventMouseMotion:
 		rotate_y(-event.relative.x * .005)
 		camera.rotate_x(-event.relative.y * .005)
 		camera.rotation.x = clamp(camera.rotation.x, -PI/2, PI/2)
+
 
 func _physics_process(delta):
 	if not is_multiplayer_authority(): return
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
+
+	#MenuToggle
+	if Input.is_action_just_pressed("menu"):
+		if menu.visible:
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		else:
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		menu.visible = not menu.visible
+		
+	if menu.visible: return
 
 	# Handle Jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
