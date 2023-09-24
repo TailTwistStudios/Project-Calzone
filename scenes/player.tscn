@@ -52,7 +52,6 @@ grow_vertical = 2
 layout_mode = 2
 
 [node name="World Map" type="MarginContainer" parent="MenuCanvas/Menu/TabContainer"]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
@@ -80,6 +79,7 @@ layout_mode = 2
 autowrap_mode = 2
 
 [node name="Settings" type="MarginContainer" parent="MenuCanvas/Menu/TabContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10

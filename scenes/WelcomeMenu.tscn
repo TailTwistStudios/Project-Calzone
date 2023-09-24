@@ -1,0 +1,87 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4kf5pkgs6lt3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_jtrht"]
+font_size = 20
+
+[node name="MainMenu" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -652.0
+offset_bottom = -148.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(44.295, 0)
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Info" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="MarginContainer/HBoxContainer/Info"]
+layout_mode = 2
+text = "Welcome To Project Calzone!"
+label_settings = SubResource("LabelSettings_jtrht")
+horizontal_alignment = 1
+
+[node name="Description" type="Label" parent="MarginContainer/HBoxContainer/Info"]
+layout_mode = 2
+text = "Project Calzone is an experimetnal Social VR Game built on top of Godot Engine.
+
+If you encounter anything that seems out of the ordinary or broken, need accessibility accomadations we currently don't offer, or just want to ask/suggest a feature please report it on our GitHub repo: 
+
+https://github.com/TailTwistStudios/Project-Calzone"
+autowrap_mode = 2
+
+[node name="Login" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/Login"]
+layout_mode = 2
+text = "Main Menu"
+horizontal_alignment = 1
+
+[node name="HostButton" type="Button" parent="MarginContainer/HBoxContainer/Login"]
+layout_mode = 2
+text = "Host"
+
+[node name="JoinButton" type="Button" parent="MarginContainer/HBoxContainer/Login"]
+layout_mode = 2
+text = "Join"
+
+[node name="Label2" type="Label" parent="MarginContainer/HBoxContainer/Login"]
+layout_mode = 2
+text = "Server Address"
+horizontal_alignment = 1
+
+[node name="Address Entry" type="LineEdit" parent="MarginContainer/HBoxContainer/Login"]
+layout_mode = 2
+placeholder_text = "Enter IP Address"
+alignment = 1
+caret_blink = true
+caret_blink_interval = 0.5
+
+[node name="Label3" type="Label" parent="MarginContainer/HBoxContainer/Login"]
+layout_mode = 2
+text = "Instance Address"
+horizontal_alignment = 1
+
+[node name="Address Entry2" type="LineEdit" parent="MarginContainer/HBoxContainer/Login"]
+layout_mode = 2
+placeholder_text = "Enter IP Address"
+alignment = 1
+caret_blink = true
+caret_blink_interval = 0.5
