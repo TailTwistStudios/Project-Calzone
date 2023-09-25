@@ -14,6 +14,8 @@ func _ready():
 	if is_multiplayer_authority():
 		camera.current = true
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	else:
+		menu.visible = false
 	
 
 func _enter_tree():

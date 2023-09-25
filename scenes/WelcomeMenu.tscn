@@ -1,9 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://c4kf5pkgs6lt3"]
+[gd_scene load_steps=3 format=3 uid="uid://c4kf5pkgs6lt3"]
+
+[ext_resource type="Script" path="res://scripts/WelcomeMenu.gd" id="1_htyb3"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_jtrht"]
 font_size = 20
 
-[node name="MainMenu" type="PanelContainer"]
+[node name="WelcomeMenu" type="PanelContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -12,6 +14,7 @@ offset_bottom = -148.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(44.295, 0)
+script = ExtResource("1_htyb3")
 metadata/_edit_use_anchors_ = true
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -75,13 +78,18 @@ caret_blink = true
 caret_blink_interval = 0.5
 
 [node name="Label3" type="Label" parent="MarginContainer/HBoxContainer/Login"]
+visible = false
 layout_mode = 2
 text = "Instance Address"
 horizontal_alignment = 1
 
 [node name="Address Entry2" type="LineEdit" parent="MarginContainer/HBoxContainer/Login"]
+visible = false
 layout_mode = 2
 placeholder_text = "Enter IP Address"
 alignment = 1
 caret_blink = true
 caret_blink_interval = 0.5
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Login/HostButton" to="." method="_on_host_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Login/JoinButton" to="." method="_on_join_button_pressed"]
