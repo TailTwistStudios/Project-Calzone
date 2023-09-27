@@ -65,7 +65,19 @@ text = "Host"
 layout_mode = 2
 text = "Join"
 
-[node name="Label2" type="Label" parent="MarginContainer/HBoxContainer/Login"]
+[node name="Username" type="Label" parent="MarginContainer/HBoxContainer/Login"]
+layout_mode = 2
+text = "Username"
+horizontal_alignment = 1
+
+[node name="Username Entry" type="LineEdit" parent="MarginContainer/HBoxContainer/Login"]
+layout_mode = 2
+placeholder_text = "Your Name Here"
+alignment = 1
+caret_blink = true
+caret_blink_interval = 0.5
+
+[node name="Label4" type="Label" parent="MarginContainer/HBoxContainer/Login"]
 layout_mode = 2
 text = "Server Address"
 horizontal_alignment = 1

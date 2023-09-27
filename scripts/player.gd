@@ -6,11 +6,16 @@ const JUMP_VELOCITY = 4.5
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+#var playerName : String = "": set = setPlayerName
 @onready var camera : Camera3D = $Camera3D
 @onready var menu : CanvasLayer = $MenuCanvas
+@onready var nameLabel : Label3D = $NameLabel
+var username : String
 
 
 func _ready():
+	nameLabel.text = str(get_multiplayer_authority())
+	
 	if is_multiplayer_authority():
 		camera.current = true
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -21,14 +26,17 @@ func _ready():
 func _enter_tree():
 	set_multiplayer_authority(str(name).to_int())
 
-
-func _unhandled_input(event):
+func _input(event):
 	if not is_multiplayer_authority(): return
-	if menu.visible: return
 	if event is InputEventMouseMotion:
 		rotate_y(-event.relative.x * .005)
 		camera.rotate_x(-event.relative.y * .005)
 		camera.rotation.x = clamp(camera.rotation.x, -PI/2, PI/2)
+
+func _unhandled_input(event):
+	if not is_multiplayer_authority(): return
+	if menu.visible: return
+	
 
 
 func _physics_process(delta):
@@ -63,5 +71,3 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
-
-

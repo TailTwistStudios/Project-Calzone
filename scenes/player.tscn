@@ -95,3 +95,8 @@ theme_override_font_sizes/font_size = 50
 text = "TabTest
 "
 horizontal_alignment = 1
+
+[node name="NameLabel" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.38674, 0)
+billboard = 1
+text = "Player Name"

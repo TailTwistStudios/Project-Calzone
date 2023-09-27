@@ -13,7 +13,7 @@ func _unhandled_input(event):
 
 
 
-func add_player(peer_id):
+func add_player(peer_id : int):
 	var player = Player.instantiate()
 	player.name = str(peer_id)
 	player.set_multiplayer_authority(peer_id,true)
