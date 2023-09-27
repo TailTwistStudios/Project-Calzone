@@ -1,8 +1,13 @@
 [gd_scene load_steps=9 format=3 uid="uid://dolg415b2ypyq"]
 
-[ext_resource type="Script" path="res://scripts/MultiplayerController.gd" id="1_p3tc8"]
-[ext_resource type="Material" uid="uid://bopblcmuh0g35" path="res://materials/debug/DebugGridGray.tres" id="2_lktph"]
-[ext_resource type="PackedScene" uid="uid://c4kf5pkgs6lt3" path="res://scenes/WelcomeMenu.tscn" id="3_bqyqn"]
+[ext_resource type="Script" path="res://scripts/MultiplayerController.gd" id="1_gdphh"]
+[ext_resource type="Material" uid="uid://bopblcmuh0g35" path="res://materials/debug/DebugGridGray.tres" id="2_hlljr"]
+[ext_resource type="PackedScene" uid="uid://c4kf5pkgs6lt3" path="res://scenes/WelcomeMenu.tscn" id="3_idiyd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cgvu1"]
+size = Vector3(10, 1, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_on6j6"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yitre"]
 
@@ -13,29 +18,24 @@ sky_material = SubResource("ProceduralSkyMaterial_yitre")
 background_mode = 2
 sky = SubResource("Sky_d1dbi")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_cgvu1"]
-size = Vector3(10, 1, 10)
+[node name="MainScene" type="Node3D"]
+script = ExtResource("1_gdphh")
 
-[sub_resource type="BoxMesh" id="BoxMesh_on6j6"]
+[node name="WorldRoot" type="Node3D" parent="."]
 
-[node name="TestScene" type="Node3D"]
-script = ExtResource("1_p3tc8")
-
-[node name="Node3D" type="Node3D" parent="."]
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_3pmyx")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
+[node name="StaticBody3D" type="StaticBody3D" parent="WorldRoot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WorldRoot/StaticBody3D"]
 shape = SubResource("BoxShape3D_cgvu1")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WorldRoot/StaticBody3D"]
 transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, 0, 0, 0)
-material_override = ExtResource("2_lktph")
+material_override = ExtResource("2_hlljr")
 mesh = SubResource("BoxMesh_on6j6")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="WorldRoot"]
+environment = SubResource("Environment_3pmyx")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.450628, -0.76868, 0.453944, 0, 0.508501, 0.861062, -0.892712, -0.388019, 0.229145, 0.861298, 4.38785, 0.156586)
@@ -50,7 +50,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="WelcomeMenu" parent="CanvasLayer/Control" instance=ExtResource("3_bqyqn")]
+[node name="WelcomeMenu" parent="CanvasLayer/Control" instance=ExtResource("3_idiyd")]
 layout_mode = 1
 offset_left = 353.0
 offset_top = 100.0

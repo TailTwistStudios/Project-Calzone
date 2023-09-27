@@ -7,6 +7,7 @@ const PORT = 38945
 var enet_peer = ENetMultiplayerPeer.new()
 
 
+
 func _unhandled_input(event):
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()
@@ -17,7 +18,10 @@ func add_player(peer_id : int):
 	var player = Player.instantiate()
 	player.name = str(peer_id)
 	player.set_multiplayer_authority(peer_id,true)
+	multiplayer.peer_disconnected.connect(player._on_player_leave)
+	
 	add_child(player)
+	
 	
 
 
@@ -36,3 +40,4 @@ func _on_welcome_menu_join_session():
 	if main_menu.address == "": main_menu.address = "localhost"
 	enet_peer.create_client(main_menu.address, PORT)
 	multiplayer.multiplayer_peer = enet_peer
+

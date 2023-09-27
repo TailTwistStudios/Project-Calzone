@@ -1,6 +1,8 @@
 extends CharacterBody3D
 
 
+signal PlayerLeave
+
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
@@ -27,7 +29,7 @@ func _enter_tree():
 	set_multiplayer_authority(str(name).to_int())
 
 func _input(event):
-	if not is_multiplayer_authority(): return
+	if not is_multiplayer_authority() or menu.visible: return
 	if event is InputEventMouseMotion:
 		rotate_y(-event.relative.x * .005)
 		camera.rotate_x(-event.relative.y * .005)
@@ -71,3 +73,8 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+
+
+func _on_player_leave(id : int):
+	if id == get_multiplayer_authority():
+		queue_free()
