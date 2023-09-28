@@ -1,44 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://dolg415b2ypyq"]
+[gd_scene load_steps=4 format=3 uid="uid://dolg415b2ypyq"]
 
 [ext_resource type="Script" path="res://scripts/MultiplayerController.gd" id="1_gdphh"]
-[ext_resource type="Material" uid="uid://bopblcmuh0g35" path="res://materials/debug/DebugGridGray.tres" id="2_hlljr"]
+[ext_resource type="Script" path="res://scripts/WorldLoader.gd" id="2_6x6mj"]
 [ext_resource type="PackedScene" uid="uid://c4kf5pkgs6lt3" path="res://scenes/WelcomeMenu.tscn" id="3_idiyd"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_cgvu1"]
-size = Vector3(10, 1, 10)
-
-[sub_resource type="BoxMesh" id="BoxMesh_on6j6"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yitre"]
-
-[sub_resource type="Sky" id="Sky_d1dbi"]
-sky_material = SubResource("ProceduralSkyMaterial_yitre")
-
-[sub_resource type="Environment" id="Environment_3pmyx"]
-background_mode = 2
-sky = SubResource("Sky_d1dbi")
 
 [node name="MainScene" type="Node3D"]
 script = ExtResource("1_gdphh")
 
 [node name="WorldRoot" type="Node3D" parent="."]
-
-[node name="StaticBody3D" type="StaticBody3D" parent="WorldRoot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="WorldRoot/StaticBody3D"]
-shape = SubResource("BoxShape3D_cgvu1")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="WorldRoot/StaticBody3D"]
-transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, 0, 0, 0)
-material_override = ExtResource("2_hlljr")
-mesh = SubResource("BoxMesh_on6j6")
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="WorldRoot"]
-environment = SubResource("Environment_3pmyx")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.450628, -0.76868, 0.453944, 0, 0.508501, 0.861062, -0.892712, -0.388019, 0.229145, 0.861298, 4.38785, 0.156586)
+script = ExtResource("2_6x6mj")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

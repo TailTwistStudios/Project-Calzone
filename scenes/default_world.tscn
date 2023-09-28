@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://wwqowbacscv2"]
+
+[ext_resource type="Material" uid="uid://bopblcmuh0g35" path="res://materials/debug/DebugGridGray.tres" id="1_pqj1e"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cgvu1"]
+size = Vector3(10, 1, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_on6j6"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yitre"]
+
+[sub_resource type="Sky" id="Sky_d1dbi"]
+sky_material = SubResource("ProceduralSkyMaterial_yitre")
+
+[sub_resource type="Environment" id="Environment_3pmyx"]
+background_mode = 2
+sky = SubResource("Sky_d1dbi")
+
+[node name="DefaultWorld" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_cgvu1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, 0, 0, 0)
+material_override = ExtResource("1_pqj1e")
+mesh = SubResource("BoxMesh_on6j6")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_3pmyx")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.450628, -0.76868, 0.453945, 0, 0.508501, 0.861062, -0.892712, -0.388018, 0.229145, 0.861298, 4.38785, 0.156586)
