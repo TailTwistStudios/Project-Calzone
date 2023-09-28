@@ -1,0 +1,96 @@
+[gd_scene load_steps=2 format=3 uid="uid://dm78xpp8ujc8"]
+
+[ext_resource type="Script" path="res://scripts/WorldMapRequester.gd" id="1_cpcn0"]
+
+[node name="Menu" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 212.0
+offset_top = 69.0
+offset_right = -212.0
+offset_bottom = -69.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 2
+
+[node name="World Map" type="MarginContainer" parent="TabContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/World Map"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/World Map/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Worldmap"
+horizontal_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="TabContainer/World Map/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HTTPRequest" type="HTTPRequest" parent="TabContainer/World Map/VBoxContainer/PanelContainer"]
+script = ExtResource("1_cpcn0")
+
+[node name="@Timer@34783" type="Timer" parent="TabContainer/World Map/VBoxContainer/PanelContainer/HTTPRequest"]
+one_shot = true
+
+[node name="Label" type="Label" parent="TabContainer/World Map/VBoxContainer/PanelContainer"]
+layout_mode = 2
+autowrap_mode = 2
+
+[node name="Settings" type="MarginContainer" parent="TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Settings"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/Settings/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "TabTest
+"
+horizontal_alignment = 1
+
+[node name="Exit" type="MarginContainer" parent="TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Exit"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/Exit/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Exit"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Exit/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Return Home" type="Button" parent="TabContainer/Exit/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Return Home"
+
+[node name="Quit3" type="Button" parent="TabContainer/Exit/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Quit Game"

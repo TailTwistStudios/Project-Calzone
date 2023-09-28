@@ -13,11 +13,16 @@ config_version=5
 config/name="ProjectCalzone"
 run/main_scene="res://scenes/Main_Scene.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
+run/max_fps=90
 config/icon="res://icon.svg"
 
 [audio]
 
 driver/enable_input=true
+
+[autoload]
+
+Settings="*res://scripts/Settings.gd"
 
 [dotnet]
 

@@ -8,7 +8,7 @@ func _ready():
 		request("http://localhost:3000/worldmap")
 
 func _on_request_completed(_result, _response_code, _headers, body):
-	print(str(_response_code))
+	print(str(_result))
 	var json = JSON.parse_string(body.get_string_from_utf8())
 	print(json)
 	resultsLabel.text = str(json);
