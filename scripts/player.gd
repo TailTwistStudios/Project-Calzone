@@ -14,6 +14,8 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var nameLabel : Label3D = $NameLabel
 var username : String
 
+@onready var pickupRaycast : RayCast3D = $Camera3D/InteractRay
+
 
 func _ready():
 	nameLabel.text = str(get_multiplayer_authority())
@@ -35,7 +37,7 @@ func _input(event):
 		camera.rotate_x(-event.relative.y * .005)
 		camera.rotation.x = clamp(camera.rotation.x, -PI/2, PI/2)
 
-func _unhandled_input(event):
+func _unhandled_input(_event):
 	if not is_multiplayer_authority(): return
 	if menu.visible: return
 	
@@ -54,15 +56,12 @@ func _physics_process(delta):
 		else:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		menu.visible = not menu.visible
-		
 	if menu.visible: return
 
 	# Handle Jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
@@ -73,6 +72,16 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+	
+	
+	# Interaction
+	if (pickupRaycast.is_colliding()):
+		var colliding_node : Node = pickupRaycast.get_collider()
+		var interactible = colliding_node.find_child("Interactible")
+		if (interactible is Interactible):
+			print(interactible.interact_prompt);
+			
+		
 
 
 func _on_player_leave(id : int):

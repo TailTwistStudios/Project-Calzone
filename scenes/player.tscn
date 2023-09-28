@@ -20,6 +20,7 @@ properties/1/watch = false
 
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 2
+floor_constant_speed = true
 script = ExtResource("1_pbpj4")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -36,6 +37,14 @@ replication_config = SubResource("SceneReplicationConfig_vn53r")
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
+[node name="InteractRay" type="RayCast3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.00180316, 0.00438678, 0.000314474)
+target_position = Vector3(0, -2, 0)
+collision_mask = 16
+
+[node name="ObjectGrabPoint" type="Node3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5)
+
 [node name="MenuCanvas" type="CanvasLayer" parent="."]
 
 [node name="Menu" parent="MenuCanvas" instance=ExtResource("2_f3gbs")]
@@ -47,7 +56,7 @@ text = "Player Name"
 
 [node name="HUD Layer" type="CanvasLayer" parent="."]
 
-[node name="FPSLabel" type="Label" parent="."]
+[node name="FPSLabel" type="Label" parent="HUD Layer"]
 offset_right = 40.0
 offset_bottom = 23.0
 script = ExtResource("3_gcixt")
