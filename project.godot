@@ -22,7 +22,8 @@ driver/enable_input=true
 
 [autoload]
 
-Settings="*res://scripts/Settings.gd"
+Settings="*res://scripts/autoload/Settings.gd"
+NetworkManager="*res://scenes/autoload/NetworkManager.tscn"
 
 [dotnet]
 

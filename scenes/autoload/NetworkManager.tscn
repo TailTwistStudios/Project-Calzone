@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbvnkcuqxg1kq"]
+
+[ext_resource type="Script" path="res://scripts/autoload/NetworkManager.gd" id="1_83d1j"]
+
+[node name="Node" type="Node"]
+script = ExtResource("1_83d1j")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]

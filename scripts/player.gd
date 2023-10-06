@@ -79,8 +79,8 @@ func _physics_process(delta):
 		var colliding_node : Node = pickupRaycast.get_collider()
 		var interactible = colliding_node.find_child("Interactible")
 		if (interactible is Interactible):
-			print(interactible.interact_prompt);
-			
+			#print(interactible.interact_prompt);
+			pass
 		
 
 

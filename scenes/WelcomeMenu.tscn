@@ -41,7 +41,10 @@ horizontal_alignment = 1
 
 [node name="Description" type="Label" parent="MarginContainer/HBoxContainer/Info"]
 layout_mode = 2
-text = "Project Calzone is an experimetnal Social VR Game built on top of Godot Engine.
+theme_override_font_sizes/font_size = 14
+text = "NOTE: While we work on the web backend, the client can only connect to hosts running on the same machine!
+
+Project Calzone is an experimetnal Social VR Game built on top of Godot Engine.
 
 If you encounter anything that seems out of the ordinary or broken, need accessibility accomadations we currently don't offer, or just want to ask/suggest a feature please report it on our GitHub repo: 
 
@@ -58,50 +61,60 @@ text = "Main Menu"
 horizontal_alignment = 1
 
 [node name="HostButton" type="Button" parent="MarginContainer/HBoxContainer/Login"]
+visible = false
 layout_mode = 2
 text = "Host"
 
 [node name="JoinButton" type="Button" parent="MarginContainer/HBoxContainer/Login"]
+visible = false
 layout_mode = 2
 text = "Join"
 
 [node name="Username" type="Label" parent="MarginContainer/HBoxContainer/Login"]
+visible = false
 layout_mode = 2
 text = "Username"
 horizontal_alignment = 1
 
 [node name="Username Entry" type="LineEdit" parent="MarginContainer/HBoxContainer/Login"]
+visible = false
 layout_mode = 2
 placeholder_text = "Your Name Here"
 alignment = 1
 caret_blink = true
 caret_blink_interval = 0.5
 
-[node name="Label4" type="Label" parent="MarginContainer/HBoxContainer/Login"]
+[node name="Address Label" type="Label" parent="MarginContainer/HBoxContainer/Login"]
+visible = false
 layout_mode = 2
 text = "Server Address"
 horizontal_alignment = 1
 
 [node name="Address Entry" type="LineEdit" parent="MarginContainer/HBoxContainer/Login"]
+visible = false
 layout_mode = 2
 placeholder_text = "Enter IP Address"
 alignment = 1
 caret_blink = true
 caret_blink_interval = 0.5
 
-[node name="Label3" type="Label" parent="MarginContainer/HBoxContainer/Login"]
-visible = false
+[node name="Instance Address Label" type="Label" parent="MarginContainer/HBoxContainer/Login"]
 layout_mode = 2
-text = "Instance Address"
+text = "Instance Domain"
 horizontal_alignment = 1
 
-[node name="Address Entry2" type="LineEdit" parent="MarginContainer/HBoxContainer/Login"]
-visible = false
+[node name="Instance Address Text Field" type="LineEdit" parent="MarginContainer/HBoxContainer/Login"]
 layout_mode = 2
-placeholder_text = "Enter IP Address"
+text = "localhost:3000"
+placeholder_text = "Instance Domain"
 alignment = 1
 caret_blink = true
 caret_blink_interval = 0.5
+
+[node name="Instance Login Button" type="Button" parent="MarginContainer/HBoxContainer/Login"]
+layout_mode = 2
+text = "Login"
 
 [connection signal="pressed" from="MarginContainer/HBoxContainer/Login/HostButton" to="." method="_on_host_button_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/Login/JoinButton" to="." method="_on_join_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Login/Instance Login Button" to="." method="_on_instance_login_button_pressed"]
