@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dm78xpp8ujc8"]
+[gd_scene load_steps=4 format=3 uid="uid://dm78xpp8ujc8"]
 
 [ext_resource type="Script" path="res://scripts/WorldMapRequester.gd" id="1_cpcn0"]
 [ext_resource type="Script" path="res://scripts/ui/SessionList.gd" id="2_vg7hr"]
+[ext_resource type="Script" path="res://scripts/ui/Quit Button.gd" id="3_o270w"]
 
 [node name="Menu" type="PanelContainer"]
 anchors_preset = 15
@@ -123,9 +124,14 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Return Home"
 
-[node name="Quit3" type="Button" parent="TabContainer/Exit/VBoxContainer/HBoxContainer"]
+[node name="Quit Button" type="Button" parent="TabContainer/Exit/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Quit Game"
+script = ExtResource("3_o270w")
+
+[node name="QuitDelay" type="Timer" parent="TabContainer/Exit/VBoxContainer/HBoxContainer/Quit Button"]
+wait_time = 0.5
 
 [connection signal="request_completed" from="TabContainer/Sessions/VBoxContainer/SessionRequest" to="TabContainer/Sessions/VBoxContainer/SessionList" method="_on_session_request_request_completed"]
+[connection signal="timeout" from="TabContainer/Exit/VBoxContainer/HBoxContainer/Quit Button/QuitDelay" to="TabContainer/Exit/VBoxContainer/HBoxContainer/Quit Button" method="_on_quit_delay_timeout"]

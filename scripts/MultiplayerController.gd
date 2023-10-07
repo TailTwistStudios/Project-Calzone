@@ -7,13 +7,6 @@ const PORT = 38945
 var enet_peer = ENetMultiplayerPeer.new()
 
 
-
-func _unhandled_input(_event):
-	if Input.is_action_just_pressed("quit"):
-		get_tree().quit()
-
-
-
 func add_player(peer_id : int):
 	var player = Player.instantiate()
 	player.name = str(peer_id)

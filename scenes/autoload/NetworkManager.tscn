@@ -5,6 +5,14 @@
 [node name="Node" type="Node"]
 script = ExtResource("1_83d1j")
 
-[node name="HTTPRequest" type="HTTPRequest" parent="."]
+[node name="RegisterRequest" type="HTTPRequest" parent="."]
 
-[connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]
+[node name="CheckInRequest" type="HTTPRequest" parent="."]
+
+[node name="CloseRequest" type="HTTPRequest" parent="."]
+
+[node name="CheckInTimer" type="Timer" parent="."]
+
+[connection signal="request_completed" from="RegisterRequest" to="." method="_on_register_request_request_completed"]
+[connection signal="request_completed" from="CheckInRequest" to="." method="_on_check_in_request_request_completed"]
+[connection signal="timeout" from="CheckInTimer" to="." method="_on_check_in_timer_timeout"]

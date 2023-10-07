@@ -1,7 +1,6 @@
 extends VBoxContainer
 
 @onready var httpRequest : HTTPRequest = $"../SessionRequest"
-@onready var sessionlabel : Label = $SessionLabel
 @onready var sessionListingPrefab : PackedScene = preload("res://scenes/ui/session_listing.tscn")
 
 func updateSessionList():
