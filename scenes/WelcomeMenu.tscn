@@ -60,44 +60,6 @@ layout_mode = 2
 text = "Main Menu"
 horizontal_alignment = 1
 
-[node name="HostButton" type="Button" parent="MarginContainer/HBoxContainer/Login"]
-visible = false
-layout_mode = 2
-text = "Host"
-
-[node name="JoinButton" type="Button" parent="MarginContainer/HBoxContainer/Login"]
-visible = false
-layout_mode = 2
-text = "Join"
-
-[node name="Username" type="Label" parent="MarginContainer/HBoxContainer/Login"]
-visible = false
-layout_mode = 2
-text = "Username"
-horizontal_alignment = 1
-
-[node name="Username Entry" type="LineEdit" parent="MarginContainer/HBoxContainer/Login"]
-visible = false
-layout_mode = 2
-placeholder_text = "Your Name Here"
-alignment = 1
-caret_blink = true
-caret_blink_interval = 0.5
-
-[node name="Address Label" type="Label" parent="MarginContainer/HBoxContainer/Login"]
-visible = false
-layout_mode = 2
-text = "Server Address"
-horizontal_alignment = 1
-
-[node name="Address Entry" type="LineEdit" parent="MarginContainer/HBoxContainer/Login"]
-visible = false
-layout_mode = 2
-placeholder_text = "Enter IP Address"
-alignment = 1
-caret_blink = true
-caret_blink_interval = 0.5
-
 [node name="Instance Address Label" type="Label" parent="MarginContainer/HBoxContainer/Login"]
 layout_mode = 2
 text = "Instance Domain"
@@ -115,6 +77,4 @@ caret_blink_interval = 0.5
 layout_mode = 2
 text = "Login"
 
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Login/HostButton" to="." method="_on_host_button_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Login/JoinButton" to="." method="_on_join_button_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/Login/Instance Login Button" to="." method="_on_instance_login_button_pressed"]
