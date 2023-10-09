@@ -74,3 +74,8 @@ menu={
 [layer_names]
 
 3d_physics/layer_5="Interactions"
+
+[xr]
+
+openxr/enabled=true
+shaders/enabled=true
