@@ -1,12 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://ceirl4fa0nkld"]
+[gd_scene load_steps=8 format=3 uid="uid://b1g7esoe5cg7c"]
 
-[ext_resource type="Script" path="res://scripts/player.gd" id="1_pbpj4"]
+[ext_resource type="Script" path="res://scripts/PlayerBody.gd" id="1_r07fp"]
+[ext_resource type="Script" path="res://scripts/DesktopPilot.gd" id="2_ahup7"]
 [ext_resource type="PackedScene" uid="uid://dm78xpp8ujc8" path="res://scenes/ui/menu.tscn" id="2_f3gbs"]
 [ext_resource type="Script" path="res://scripts/ui/FPSLabel.gd" id="3_gcixt"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_aqunt"]
-
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_kctdq"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_aqunt"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_vn53r"]
 properties/0/path = NodePath(".:position")
@@ -21,29 +22,33 @@ properties/1/watch = false
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 2
 floor_constant_speed = true
-script = ExtResource("1_pbpj4")
+script = ExtResource("1_r07fp")
+
+[node name="DesktopPilot" type="Node3D" parent="."]
+script = ExtResource("2_ahup7")
+
+[node name="Camera3D" type="Camera3D" parent="DesktopPilot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="InteractRay" type="RayCast3D" parent="DesktopPilot/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.00180316, 0.00438678, 0.000314474)
+target_position = Vector3(0, -2, 0)
+collision_mask = 16
+
+[node name="ObjectGrabPoint" type="Node3D" parent="DesktopPilot/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DesktopPilot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_kctdq")
+skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_aqunt")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-mesh = SubResource("CapsuleMesh_kctdq")
-
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_vn53r")
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
-
-[node name="InteractRay" type="RayCast3D" parent="Camera3D"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.00180316, 0.00438678, 0.000314474)
-target_position = Vector3(0, -2, 0)
-collision_mask = 16
-
-[node name="ObjectGrabPoint" type="Node3D" parent="Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5)
 
 [node name="MenuCanvas" type="CanvasLayer" parent="."]
 

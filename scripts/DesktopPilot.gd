@@ -1,53 +1,41 @@
-extends CharacterBody3D
+extends Node3D
 
+class_name DesktopPilot
 
-signal PlayerLeave
-
-const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
-
-# Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-#var playerName : String = "": set = setPlayerName
-@onready var camera : Camera3D = $Camera3D
-@onready var menu : CanvasLayer = $MenuCanvas
-@onready var nameLabel : Label3D = $NameLabel
-var username : String
 
+@onready var camera : Camera3D = $Camera3D
+@onready var menu : CanvasLayer = $"../MenuCanvas"
+@onready var playerBody : PlayerBody = $".."
 @onready var pickupRaycast : RayCast3D = $Camera3D/InteractRay
 
 
 func _ready():
-	nameLabel.text = str(get_multiplayer_authority())
-	
 	if is_multiplayer_authority():
 		camera.current = true
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	else:
 		menu.visible = false
-	
 
-func _enter_tree():
-	set_multiplayer_authority(str(name).to_int())
 
 func _input(event):
 	if not is_multiplayer_authority() or menu.visible: return
 	if event is InputEventMouseMotion:
-		rotate_y(-event.relative.x * .005)
+		playerBody.rotate_y(-event.relative.x * .005)
 		camera.rotate_x(-event.relative.y * .005)
 		camera.rotation.x = clamp(camera.rotation.x, -PI/2, PI/2)
+
 
 func _unhandled_input(_event):
 	if not is_multiplayer_authority(): return
 	if menu.visible: return
-	
 
 
 func _physics_process(delta):
 	if not is_multiplayer_authority(): return
 	# Add the gravity.
-	if not is_on_floor():
-		velocity.y -= gravity * delta
+	if not playerBody.is_on_floor():
+		playerBody.velocity.y -= gravity * delta
 
 	#MenuToggle
 	if Input.is_action_just_pressed("menu"):
@@ -59,19 +47,19 @@ func _physics_process(delta):
 	if menu.visible: return
 
 	# Handle Jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+	if Input.is_action_just_pressed("jump") and playerBody.is_on_floor():
+		playerBody.velocity.y = playerBody.jump_velocity
 
 	var input_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	var direction = (playerBody.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+		playerBody.velocity.x = direction.x * playerBody.speed
+		playerBody.velocity.z = direction.z * playerBody.speed
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+		playerBody.velocity.x = move_toward(playerBody.velocity.x, 0, playerBody.speed)
+		playerBody.velocity.z = move_toward(playerBody.velocity.z, 0, playerBody.speed)
 
-	move_and_slide()
+	playerBody.move_and_slide()
 	
 	
 	# Interaction
@@ -82,8 +70,3 @@ func _physics_process(delta):
 			#print(interactible.interact_prompt);
 			pass
 		
-
-
-func _on_player_leave(id : int):
-	if id == get_multiplayer_authority():
-		queue_free()
