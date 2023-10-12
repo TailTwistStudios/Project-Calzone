@@ -1,17 +1,10 @@
 # Project Calzone Client
-A prototype social VR game in godot engine
-Also See: [Project Calzone Web](https://github.com/TailTwistStudios/Project-Calzone-Web)
+This is the Client-side of Project Calzone, an Open Source, federated Social VR Platform.
 
-
-# Project Design
-![Project Design Diagram](Project%20Structure%20Diagram.drawio.png)
-## Design Philosophy
-1. Users need not understand the inner workings of the software in order to be able to use it.
-2. The software should provide explanation when something goes wrong.
-3. The project should be as self contained as possible and avoid using tools and libraries that unnessecarily complicate it's maintanance.
-4. No update shall be released without reasonable effort to update official documentation beforehand. Documentation updates should be considered a core part of updating the software.
-5. The project should prioritize open source or otherwise freely distributable libraries over proprietary ones.
-6. If a paid or proprietary library must be used, then if at all possible; the project should be organized as to not tie itself to one proprietary product.
+# Documentation
+For more information, and for detailed instructions on how to run this project from source, please check out [Docs.ProjectCal.zone](http://docs.projectcal.zone)
 
 # Support Development
-Though this project is open source, it's development is spearheaded by TailTwist Studios for free. You can help support development by donating on [Patreon](https://www.patreon.com/Aetous)
+Though this project is open source, it's development is spearheaded and maintained by TailTwist Studios for free. You can optionally help support development by donating on [Patreon](https://www.patreon.com/Aetous).
+
+This project uses a community run distributed network; the web services that you use when playing this game are mostly run by individuals, often out of pocket. Please reach out to the host of your web instance and ask how you can support them!
