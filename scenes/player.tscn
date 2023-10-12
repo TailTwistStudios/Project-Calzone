@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://b1g7esoe5cg7c"]
+[gd_scene load_steps=8 format=3 uid="uid://b1g7esoe5cg7c"]
 
 [ext_resource type="Script" path="res://scripts/PlayerBody.gd" id="1_r07fp"]
 [ext_resource type="PackedScene" uid="uid://bxei10erjyab3" path="res://scenes/desktop_pilot.tscn" id="2_535um"]
 [ext_resource type="PackedScene" uid="uid://dm78xpp8ujc8" path="res://scenes/ui/menu.tscn" id="2_f3gbs"]
+[ext_resource type="Script" path="res://scripts/VRPilot.gd" id="3_40ciu"]
 [ext_resource type="Script" path="res://scripts/ui/FPSLabel.gd" id="3_gcixt"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_aqunt"]
@@ -24,14 +25,18 @@ script = ExtResource("1_r07fp")
 
 [node name="DesktopPilot" parent="." instance=ExtResource("2_535um")]
 
-[node name="VRPilot" type="XROrigin3D" parent="."]
+[node name="VRPilot" type="Node3D" parent="."]
+visible = false
+script = ExtResource("3_40ciu")
 
-[node name="XRCamera3D" type="XRCamera3D" parent="VRPilot"]
+[node name="XROrigin3D" type="XROrigin3D" parent="VRPilot"]
 
-[node name="Left Hand" type="XRController3D" parent="VRPilot"]
+[node name="XRCamera3D" type="XRCamera3D" parent="VRPilot/XROrigin3D"]
+
+[node name="Left Hand" type="XRController3D" parent="VRPilot/XROrigin3D"]
 tracker = &"left_hand"
 
-[node name="Right Hand" type="XRController3D" parent="VRPilot"]
+[node name="Right Hand" type="XRController3D" parent="VRPilot/XROrigin3D"]
 tracker = &"right_hand"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

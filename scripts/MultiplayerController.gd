@@ -14,8 +14,6 @@ func add_player(peer_id : int):
 	multiplayer.peer_disconnected.connect(player._on_player_leave)
 	
 	add_child(player)
-	
-	
 
 
 func _on_welcome_menu_host_session():

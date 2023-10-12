@@ -2,8 +2,6 @@ extends Node3D
 
 class_name DesktopPilot
 
-var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-
 @onready var camera : Camera3D = $Camera3D
 @onready var menu : CanvasLayer = $"../MenuCanvas"
 @onready var playerBody : PlayerBody = $".."
@@ -31,11 +29,8 @@ func _unhandled_input(_event):
 	if menu.visible: return
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if not is_multiplayer_authority(): return
-	# Add the gravity.
-	if not playerBody.is_on_floor():
-		playerBody.velocity.y -= gravity * delta
 
 	#MenuToggle
 	if Input.is_action_just_pressed("menu"):
@@ -58,10 +53,7 @@ func _physics_process(delta):
 	else:
 		playerBody.velocity.x = move_toward(playerBody.velocity.x, 0, playerBody.speed)
 		playerBody.velocity.z = move_toward(playerBody.velocity.z, 0, playerBody.speed)
-
-	playerBody.move_and_slide()
-	
-	
+		
 	# Interaction
 	if (pickupRaycast.is_colliding()):
 		var colliding_node : Node = pickupRaycast.get_collider()

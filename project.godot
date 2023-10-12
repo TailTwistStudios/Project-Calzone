@@ -78,4 +78,5 @@ menu={
 [xr]
 
 openxr/enabled=true
+openxr/startup_alert=false
 shaders/enabled=true
