@@ -48,7 +48,7 @@ func closeSession():
 		var url : String = getInstanceURL() + "/closesession"
 		var requestDictionary : Dictionary = {
 			"sessionID": sessionID,
-			"&sessionOwnerKey": sessionOwnerKey,
+			"sessionOwnerKey": sessionOwnerKey,
 		}
 		var requestData : String = JSON.stringify(requestDictionary)
 		
