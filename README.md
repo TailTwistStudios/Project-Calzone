@@ -4,6 +4,9 @@ This is the Client-side of Project Calzone, an Open Source, federated Social VR 
 # Documentation
 For more information, and for detailed instructions on how to run this project from source, please check out [Docs.ProjectCal.zone](http://docs.projectcal.zone)
 
+# Attributions
+- [Kloofendal Partly Cloudy Skybox (CC0)](https://polyhaven.com/a/kloofendal_48d_partly_cloudy_puresky)
+
 # Support Development
 Though this project is open source, it's development is spearheaded and maintained by TailTwist Studios for free. You can optionally help support development by donating on [Patreon](https://www.patreon.com/Aetous).
 

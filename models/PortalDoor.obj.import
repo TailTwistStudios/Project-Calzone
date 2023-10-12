@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dfy37afda8wjj"
+path="res://.godot/imported/PortalDoor.obj-28f09fe34ab384a8a96eba104f51c26d.mesh"
+
+[deps]
+
+files=["res://.godot/imported/PortalDoor.obj-28f09fe34ab384a8a96eba104f51c26d.mesh"]
+
+source_file="res://models/PortalDoor.obj"
+dest_files=["res://.godot/imported/PortalDoor.obj-28f09fe34ab384a8a96eba104f51c26d.mesh", "res://.godot/imported/PortalDoor.obj-28f09fe34ab384a8a96eba104f51c26d.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
