@@ -67,7 +67,7 @@ horizontal_alignment = 1
 
 [node name="Instance Address Text Field" type="LineEdit" parent="MarginContainer/HBoxContainer/Login"]
 layout_mode = 2
-text = "localhost:3000"
+text = "localhost:7045"
 placeholder_text = "Instance Domain"
 alignment = 1
 caret_blink = true
