@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dm78xpp8ujc8"]
 
-[ext_resource type="Script" path="res://scripts/WorldMapRequester.gd" id="1_cpcn0"]
+[ext_resource type="PackedScene" uid="uid://doxx6b15s5ipe" path="res://scenes/ui/player_card.tscn" id="1_i8ogq"]
 [ext_resource type="Script" path="res://scripts/ui/SessionList.gd" id="2_vg7hr"]
 [ext_resource type="Script" path="res://scripts/ui/Quit Button.gd" id="3_o270w"]
 
@@ -18,37 +18,47 @@ grow_vertical = 2
 [node name="TabContainer" type="TabContainer" parent="."]
 layout_mode = 2
 
-[node name="World Map" type="MarginContainer" parent="TabContainer"]
+[node name="Current Session" type="MarginContainer" parent="TabContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/World Map"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Current Session"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="TabContainer/World Map/VBoxContainer"]
+[node name="Label" type="Label" parent="TabContainer/Current Session/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
-text = "Worldmap"
+text = "Current Session"
 horizontal_alignment = 1
 
-[node name="PanelContainer" type="PanelContainer" parent="TabContainer/World Map/VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="TabContainer/Current Session/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="HTTPRequest" type="HTTPRequest" parent="TabContainer/World Map/VBoxContainer/PanelContainer"]
-script = ExtResource("1_cpcn0")
-
-[node name="@Timer@34783" type="Timer" parent="TabContainer/World Map/VBoxContainer/PanelContainer/HTTPRequest"]
-one_shot = true
-
-[node name="Label" type="Label" parent="TabContainer/World Map/VBoxContainer/PanelContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Current Session/VBoxContainer/PanelContainer"]
 layout_mode = 2
-autowrap_mode = 2
 
-[node name="Sessions" type="MarginContainer" parent="TabContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Current Session/VBoxContainer/PanelContainer/ScrollContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="TabContainer/Current Session/VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Players In Session"
+
+[node name="UsersIn Session" type="HFlowContainer" parent="TabContainer/Current Session/VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Player Card" parent="TabContainer/Current Session/VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer/UsersIn Session" instance=ExtResource("1_i8ogq")]
+layout_mode = 2
+
+[node name="Public Sessions" type="MarginContainer" parent="TabContainer"]
 visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 10
@@ -56,25 +66,25 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Sessions"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Public Sessions"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Sessions/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Public Sessions/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="TabContainer/Sessions/VBoxContainer/MarginContainer"]
+[node name="Label" type="Label" parent="TabContainer/Public Sessions/VBoxContainer/MarginContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Sessions"
 
-[node name="RefreshButton" type="Button" parent="TabContainer/Sessions/VBoxContainer/MarginContainer"]
+[node name="RefreshButton" type="Button" parent="TabContainer/Public Sessions/VBoxContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 text = "Refresh"
 
-[node name="SessionRequest" type="HTTPRequest" parent="TabContainer/Sessions/VBoxContainer"]
+[node name="SessionRequest" type="HTTPRequest" parent="TabContainer/Public Sessions/VBoxContainer"]
 
-[node name="SessionList" type="VBoxContainer" parent="TabContainer/Sessions/VBoxContainer"]
+[node name="SessionList" type="VBoxContainer" parent="TabContainer/Public Sessions/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 script = ExtResource("2_vg7hr")
@@ -133,5 +143,5 @@ script = ExtResource("3_o270w")
 [node name="QuitDelay" type="Timer" parent="TabContainer/Exit/VBoxContainer/HBoxContainer/Quit Button"]
 wait_time = 0.5
 
-[connection signal="request_completed" from="TabContainer/Sessions/VBoxContainer/SessionRequest" to="TabContainer/Sessions/VBoxContainer/SessionList" method="_on_session_request_request_completed"]
+[connection signal="request_completed" from="TabContainer/Public Sessions/VBoxContainer/SessionRequest" to="TabContainer/Public Sessions/VBoxContainer/SessionList" method="_on_session_request_request_completed"]
 [connection signal="timeout" from="TabContainer/Exit/VBoxContainer/HBoxContainer/Quit Button/QuitDelay" to="TabContainer/Exit/VBoxContainer/HBoxContainer/Quit Button" method="_on_quit_delay_timeout"]
